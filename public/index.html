@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Bull Europe Monument Tour | Proposal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface-2: #1a1a1a;
+      --border: #222;
+      --text: #f0f0f0;
+      --text-muted: #888;
+      --accent: #c850f0;
+      --accent-2: #ff6b9d;
+      --gradient: linear-gradient(135deg, #c850f0, #ff6b9d);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+    }
+
+    body { background: var(--bg); overflow-x: hidden; }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      position: relative;
+    }
+
+    .short-section { min-height: auto; }
+
+    .inner { max-width: 900px; width: 100%; }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    p, li {
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 40px;
+      align-items: center;
+      text-align: left;
+    }
+
+    .hero h1 { margin-bottom: 24px; }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      max-width: 600px;
+      margin: 0 0 40px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+
+    .hero-video {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 9/16;
+    }
+
+    .hero-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-layout { grid-template-columns: 1fr; text-align: center; }
+      .hero p { margin: 0 auto 40px; }
+    }
+
+    /* Video break */
+    .video-break {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      max-width: 900px;
+      margin: 40px auto 0;
+      aspect-ratio: 16/9;
+    }
+
+    .video-break video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Format cards */
+    .format-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .format-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .format-card .format-logo {
+      height: 48px;
+      margin-bottom: 12px;
+      object-fit: contain;
+      opacity: 0.9;
+    }
+
+    .format-card .format-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .format-card .format-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 640px) {
+      .format-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Timeline */
+    .timeline {
+      list-style: none;
+      margin-top: 32px;
+      padding-left: 0;
+    }
+
+    .timeline li {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+
+    .timeline .year {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 50px;
+    }
+
+    .timeline .event {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* Quote block */
+    .quote-block {
+      background: var(--surface);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 28px 32px;
+      margin: 24px 0;
+    }
+
+    .quote-block p {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .quote-block .quote-source {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: normal;
+      margin-top: 8px;
+    }
+
+    /* Stat cards */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    .stat-card .stat-number {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-card .stat-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 640px) {
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Content rows (media + text side by side) */
+    .content-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .content-row.reverse { direction: rtl; }
+    .content-row.reverse > * { direction: ltr; }
+
+    .content-media {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 9/16;
+      max-height: 400px;
+    }
+
+    .content-media.landscape {
+      aspect-ratio: 16/9;
+      max-height: none;
+    }
+
+    .content-media video, .content-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .content-info h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .content-info p { font-size: 0.95rem; }
+
+    .content-info .num {
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .content-row, .content-row.reverse {
+        grid-template-columns: 1fr;
+        direction: ltr;
+      }
+    }
+
+    /* Value list */
+    .value-list {
+      list-style: none;
+      margin-top: 32px;
+    }
+
+    .value-list li {
+      display: flex;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+
+    .value-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+    }
+
+    .value-text h3 { font-size: 1rem; margin-bottom: 4px; }
+    .value-text p { font-size: 0.9rem; }
+
+    /* Collage */
+    .collage {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 280px 280px;
+      gap: 8px;
+      margin-top: 32px;
+    }
+
+    .collage-item {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .collage-item img, .collage-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .collage {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 200px 200px;
+      }
+    }
+
+    /* Duo grid */
+    .duo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .duo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .duo-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 16px;
+      border: 2px solid var(--border);
+    }
+
+    .duo-card h3 { margin-bottom: 4px; }
+
+    .duo-card .handle {
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .duo-card p { font-size: 0.95rem; }
+
+    /* Video grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 32px;
+    }
+
+    .video-grid-item {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 9/16;
+    }
+
+    .video-grid-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .video-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Metrics */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .metric-card .handle {
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .metric-number {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .metric-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .metric-row span:first-child { color: var(--text-muted); }
+    .metric-row span:last-child { color: var(--text); font-weight: 600; }
+    .growth { color: #4ade80 !important; }
+
+    .combined-bar {
+      margin-top: 40px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .combined-bar .metric-number {
+      font-size: clamp(3rem, 6vw, 4rem);
+    }
+
+    .combined-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .combined-stat { text-align: center; }
+
+    .combined-stat .num {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .combined-stat .lbl {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Route grid */
+    .route-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .route-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 12px;
+      text-align: center;
+    }
+
+    .route-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent);
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .route-city {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .route-landmark {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    @media (max-width: 768px) {
+      .route-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Playbook */
+    .playbook-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .playbook-item {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .playbook-item:nth-child(odd) { border-right: 1px solid var(--border); }
+
+    .playbook-item .pb-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .playbook-item .pb-value {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    /* State ladder */
+    .state-ladder {
+      margin-top: 48px;
+    }
+
+    .state-ladder-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .state-ladder-headline {
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 32px;
+      line-height: 1.3;
+    }
+
+    .ladder-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .ladder-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      transition: all 0.4s ease;
+    }
+
+    .ladder-bar .bar-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .ladder-bar .bar-state {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .ladder-bar.dormant {
+      opacity: 0.4;
+    }
+
+    .ladder-bar.sympathetic {
+      opacity: 0.55;
+    }
+
+    .ladder-bar.ventral {
+      opacity: 0.75;
+      border-color: rgba(200,80,240,0.15);
+    }
+
+    .ladder-bar.vibe-rise {
+      background: var(--gradient);
+      border-color: transparent;
+      box-shadow: 0 0 40px rgba(200,80,240,0.25), inset 0 0 20px rgba(255,255,255,0.08);
+    }
+
+    .ladder-bar.vibe-rise .bar-name {
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+
+    .ladder-bar.vibe-rise .bar-state {
+      color: rgba(255,255,255,0.9);
+    }
+
+    .ladder-caption {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .ladder-caption em {
+      font-style: italic;
+    }
+
+    /* Brand quote */
+    .brand-quote {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 40px;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .brand-quote p {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: var(--text);
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    /* Ask */
+    .ask-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .ask-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+    }
+
+    .ask-card h3 { margin-bottom: 16px; font-size: 1.1rem; }
+
+    .ask-card ul { list-style: none; padding: 0; }
+
+    .ask-card ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .ask-card ul li:last-child { border-bottom: none; }
+
+    .investment-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .investment-box h2 { margin-bottom: 12px; }
+
+    .investment-box p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Expansion */
+    .expansion-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .expansion-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .expansion-card .season-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .expansion-card h3 { font-size: 1rem; margin-bottom: 8px; }
+    .expansion-card p { font-size: 0.85rem; }
+
+    @media (max-width: 640px) {
+      .expansion-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Contact */
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1.05rem;
+    }
+
+    .contact-links a:hover { text-decoration: underline; }
+
+    .contact-links .muted {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Scroll animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 640px) {
+      section { padding: 60px 20px; }
+      .duo-grid, .metrics-grid, .ask-grid { grid-template-columns: 1fr; }
+      .combined-stats { gap: 24px; }
+      .brand-quote { padding: 32px 24px; }
+      .investment-box { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. HERO -->
+  <section class="hero">
+    <div class="inner fade-up">
+      <div class="hero-layout">
+        <div>
+          <div class="hero-badge"><span class="dot"></span> Season 1 / Summer 2026</div>
+          <h1><span class="gradient-text">Vibe Rise</span><br>x Red Bull</h1>
+          <h2 style="font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 600; color: var(--text-muted); margin-bottom: 24px;">Europe Silent Disco Monument Tour</h2>
+          <p><strong style="color: var(--text);">Where Energy Meets Aliveness.</strong><br>A proposal to create Red Bull's first cultural format in the conscious experience space.</p>
+        </div>
+        <div class="hero-video" style="position: relative;">
+          <video src="./redbull-hero.mp4" playsinline autoplay muted loop></video>
+          <div style="position: absolute; bottom: 12px; left: 0; right: 0; text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.6); pointer-events: none;">Click for music</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. THE PATTERN + THE GAP (merged) -->
+  <section>
+    <div class="inner fade-up">
+      <span class="label">The Opportunity</span>
+      <h2>Red Bull doesn't just sponsor culture.<br><span class="gradient-text">It creates it.</span></h2>
+      <p style="margin-top: 16px; max-width: 650px;">Every Red Bull format follows the same pattern: take a human impulse, build something extraordinary around it, make it participatory, and let the content create itself.</p>
+      <div class="format-grid">
+        <div class="format-card">
+          <img class="format-logo" src="./logo-stratos.svg" alt="Red Bull Stratos">
+          <div class="format-name">Stratos</div>
+          <div class="format-desc">Edge of space. 8M live viewers. Most-watched livestream in history.</div>
+        </div>
+        <div class="format-card">
+          <img class="format-logo" src="./logo-racing.png" alt="Red Bull Racing">
+          <div class="format-name">Red Bull Racing</div>
+          <div class="format-desc">Built the most dominant F1 team of the 2020s.</div>
+        </div>
+        <div class="format-card">
+          <img class="format-logo" src="./logo-rbma.png" alt="Red Bull Music Academy">
+          <div class="format-name">Music Academy</div>
+          <div class="format-desc">20+ years defining global music culture.</div>
+        </div>
+        <div class="format-card">
+          <img class="format-logo" src="./logo-airrace.avif" alt="Red Bull Air Race">
+          <div class="format-name">Air Race</div>
+          <div class="format-desc">Created world championship air racing from scratch.</div>
+        </div>
+        <div class="format-card">
+          <img class="format-logo" src="./logo-rampage.png" alt="Red Bull Rampage">
+          <div class="format-name">Rampage</div>
+          <div class="format-desc">The most dangerous freeride mountain bike event on earth.</div>
+        </div>
+        <div class="format-card">
+          <img class="format-logo" src="./logo-bcone.png" alt="Red Bull BC One">
+          <div class="format-name">BC One</div>
+          <div class="format-desc">World's premier breakdancing championship. Now an Olympic sport.</div>
+        </div>
+      </div>
+
+      <p style="margin-top: 40px; text-align: center; font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--text); font-weight: 600;">There's one space Red Bull hasn't entered yet.</p>
+    </div>
+  </section>
+
+  <!-- 3. THE MARKET (merged: Gen Z shift + Aliveness Economy) -->
+  <section>
+    <div class="inner fade-up">
+      <span class="label">The Market</span>
+      <h2>A generation is redefining<br><span class="gradient-text">what "energy" means.</span></h2>
+      <p style="margin-top: 16px; max-width: 650px;">Not anti-party. Pro-aliveness. Gen Z already chooses Red Bull over alcohol on a night out at 2x the rate of older generations.</p>
+
+      <div class="video-break">
+        <video src="./why-video2.mp4" playsinline autoplay muted loop></video>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-number gradient-text">40%</div>
+          <div class="stat-desc">of Gen Z actively limits alcohol consumption</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number gradient-text">$6.8T</div>
+          <div class="stat-desc">Global wellness economy (2024)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number gradient-text">$2.9B</div>
+          <div class="stat-desc">Silent disco market projected by 2033 (16.7% CAGR)</div>
+        </div>
+      </div>
+
+      <!-- Content rows: competitors with video -->
+      <div class="content-row" style="margin-top: 40px;">
+        <div class="content-media">
+          <video src="./ev-pov.mp4" playsinline autoplay muted loop></video>
+        </div>
+        <div class="content-info">
+          <div class="num">Daybreaker</div>
+          <h3>800K+ community. 66+ cities.</h3>
+          <p>Morning dance parties before work. No alcohol. Just movement. Proof that sober experiences scale globally. We bring the same energy with headphones and monuments.</p>
+        </div>
+      </div>
+
+      <div class="content-row reverse">
+        <div class="content-media">
+          <video src="./collage-vibe-tribe.mp4" playsinline autoplay muted loop></video>
+        </div>
+        <div class="content-info">
+          <div class="num">Ministry of Sound</div>
+          <h3>Launched sober rave series in 2025.</h3>
+          <p>One of the world's most iconic clubs is now hosting dry day raves. The mainstream has arrived. These are other communities proving the demand. We bring the same vibe, different format.</p>
+        </div>
+      </div>
+
+      <p style="margin-top: 32px; text-align: center; font-weight: 600; color: var(--text);">No major brand owns this space. First-mover advantage is available.</p>
+
+    </div>
+  </section>
+
+  <!-- 4. THE FORMAT (merged: Silent Disco + The Concept) -->
+  <section>
+    <div class="inner fade-up">
+      <span class="label">The Format</span>
+      <h2>Silent disco at<br><span class="gradient-text">the world's most iconic monuments.</span></h2>
+      <p style="margin-top: 16px; max-width: 650px; font-weight: 600; color: var(--text);">Why monuments? Formality x playfulness x sobriety x public vulnerability. The gap between how weird it looks and how alive it feels IS the content.</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px; align-items: center;">
+        <div style="border-radius: 16px; overflow: hidden; border: 1px solid var(--border); aspect-ratio: 9/16;">
+          <video src="./vibe-we-create.mp4" playsinline autoplay muted loop style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;"></video>
+        </div>
+        <div>
+          <p style="font-size: 0.9rem; font-style: italic; color: var(--text-muted); margin-bottom: 24px;">This energy. At every monument.</p>
+          <ul class="value-list" style="margin-top: 0;">
+            <li>
+              <div class="value-icon">🔇</div>
+              <div class="value-text">
+                <h3>Zero noise complaints</h3>
+                <p>All music is on headphones. No noise permits needed.</p>
+              </div>
+            </li>
+            <li>
+              <div class="value-icon">📱</div>
+              <div class="value-text">
+                <h3>Inherently viral</h3>
+                <p>Hundreds dancing in silence is irresistible content. Every passerby films it.</p>
+              </div>
+            </li>
+            <li>
+              <div class="value-icon">🎵</div>
+              <div class="value-text">
+                <h3>One channel</h3>
+                <p>Everyone on the same journey. One shared experience. No fragmentation. The audience IS the show.</p>
+              </div>
+            </li>
+            <li style="border-bottom: none;">
+              <div class="value-icon">⚡</div>
+              <div class="value-text">
+                <h3>Near-zero infrastructure</h3>
+                <p>Just headphones, a transmitter, and Red Bull Energy Drink at every activation.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Format flow -->
+      <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center;">
+          <div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px;">01</div>
+          <div style="font-size: 0.95rem; color: var(--text); font-weight: 600;">Meet</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">Hostel. Headphones on.</div>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center;">
+          <div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px;">02</div>
+          <div style="font-size: 0.95rem; color: var(--text); font-weight: 600;">Walk</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">To the monument.</div>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center;">
+          <div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px;">03</div>
+          <div style="font-size: 0.95rem; color: var(--text); font-weight: 600;">Dance</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">30 min. The content moment.</div>
+        </div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center;">
+          <div style="font-size: 0.65rem; color: var(--accent); font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px;">04</div>
+          <div style="font-size: 0.95rem; color: var(--text); font-weight: 600;">Return</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">Back to hostel. After-party.</div>
+        </div>
+      </div>
+      <p style="margin-top: 12px; text-align: center; font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Walking tour by name. Flash mob by nature.</p>
+
+    </div>
+  </section>
+
+  <!-- 5. THE PROOF (merged: Track record + Metrics) -->
+  <section>
+    <div class="inner fade-up">
+      <span class="label">The Proof</span>
+      <h2>We're already doing this.<br><span class="gradient-text">200+ events. Bali's largest.</span></h2>
+      <p style="margin-top: 12px; max-width: 650px;">Not a concept deck. A running operation. 600+ headset fleet, 150+ attendees regularly, 3 years of sober silent disco experiences.</p>
+
+      <div class="duo-grid">
+        <div class="duo-card">
+          <img src="./nic.jpg" alt="Nic Huzz">
+          <h3>Nic Huzz</h3>
+          <span class="handle">@_huzz</span>
+          <p>Founder of Vibe Rise. Bali's largest silent disco operation. 600+ headset fleet, 200+ events.</p>
+        </div>
+        <div class="duo-card">
+          <img src="./spiff.jpg" alt="Sydney Spiff">
+          <h3>Sydney "Spiff"</h3>
+          <span class="handle">@spiffnuggs</span>
+          <p>8 years travelling the world. Built 10K adventure lovers, then created @copilotthetravelbrand.</p>
+        </div>
+      </div>
+
+      <div class="video-grid" style="margin-top: 32px;">
+        <div class="video-grid-item">
+          <video src="./ev-fest.mp4" playsinline autoplay muted loop></video>
+        </div>
+        <div class="video-grid-item">
+          <video src="./ev-pov.mp4" playsinline autoplay muted loop></video>
+        </div>
+        <div class="video-grid-item">
+          <video src="./ev-high.mp4" playsinline autoplay muted loop></video>
+        </div>
+        <div class="video-grid-item">
+          <video src="./collage-vibe-tribe.mp4" playsinline autoplay muted loop></video>
+        </div>
+        <div class="video-grid-item">
+          <video src="./ev-boat.mp4" playsinline autoplay muted loop></video>
+        </div>
+        <div class="video-grid-item">
+          <video src="./ev-promo1.mp4" playsinline autoplay muted loop></video>
+        </div>
+        <div class="video-grid-item">
+          <video src="./collage-tables.mp4" playsinline autoplay muted loop></video>
+        </div>
+        <div class="video-grid-item">
+          <video src="./ev-fest-mov.mp4" playsinline autoplay muted loop></video>
+        </div>
+      </div>
+
+      <p style="margin-top: 32px; text-align: center;">Professional videographer + Monkgrid editing agency already hired. The content machine is built.</p>
+    </div>
+  </section>
+
+  <!-- 6. SEASON 1 ROUTE -->
+  <section>
+    <div class="inner fade-up">
+      <span class="label">Season 1</span>
+      <h2>6 cities. 6 monuments.<br><span class="gradient-text">1 summer.</span></h2>
+      <p style="margin-top: 12px;">Confirmed for Summer 2026. July &ndash; September.</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div class="route-card"><span class="route-num">1</span><div class="route-city">Barcelona</div><div class="route-landmark">July 29</div></div>
+          <div class="route-card"><span class="route-num">2</span><div class="route-city">Paris</div><div class="route-landmark">August 5</div></div>
+          <div class="route-card"><span class="route-num">3</span><div class="route-city">Amsterdam</div><div class="route-landmark">August 12</div></div>
+          <div class="route-card"><span class="route-num">4</span><div class="route-city">Copenhagen</div><div class="route-landmark">August 19</div></div>
+          <div class="route-card"><span class="route-num">5</span><div class="route-city">Berlin</div><div class="route-landmark">August 26</div></div>
+          <div class="route-card"><span class="route-num">6</span><div class="route-city">Rome</div><div class="route-landmark">September 2</div></div>
+        </div>
+        <div style="border-radius: 16px; overflow: hidden; border: 1px solid var(--border); aspect-ratio: 9/16;">
+          <video src="./ev-promo1.mp4" playsinline autoplay muted loop style="width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer;"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. WHY RED BULL (merged: Playbook + Brand Story) -->
+  <section>
+    <div class="inner fade-up">
+      <span class="label">Why Red Bull</span>
+      <h2>Not just a sponsorship proposal.<br><span class="gradient-text">It's a new Red Bull format.</span></h2>
+
+      <div class="brand-quote">
+        <p>For 39 years, Red Bull has given wings to people who push limits. Today, a new generation is pushing a different limit: the limit of what it means to feel alive without numbing yourself.</p>
+        <p style="margin-top: 16px;">No speakers. No alcohol. No barriers. Just headphones, a Red Bull, and the belief that the best party is the one you actually remember.</p>
+        <p style="margin-top: 16px;">This is what giving wings looks like in 2026.</p>
+      </div>
+
+      <div class="playbook-grid">
+        <div class="playbook-item" style="border-bottom: none; padding-bottom: 8px;"><div class="pb-label">Red Bull Playbook</div></div>
+        <div class="playbook-item" style="border-bottom: none; padding-bottom: 8px;"><div class="pb-label">Europe Monument Tour</div></div>
+        <div class="playbook-item"><div class="pb-value">Take a human impulse, build something extraordinary around it</div></div>
+        <div class="playbook-item"><div class="pb-value">The desire to feel alive through music and movement, at the world's most iconic landmarks</div></div>
+        <div class="playbook-item"><div class="pb-value">Make it participatory, let the content create itself</div></div>
+        <div class="playbook-item"><div class="pb-value">The audience IS the show. "100 people dancing silently at the Colosseum" = guaranteed viral.</div></div>
+        <div class="playbook-item" style="border-bottom: none;"><div class="pb-value">Own the format, scale it globally</div></div>
+        <div class="playbook-item" style="border-bottom: none;"><div class="pb-value">Season 1, 2, 3. Every city has a monument. Every monument is a dance floor.</div></div>
+      </div>
+
+      <!-- State Ladder -->
+      <div class="state-ladder">
+        <div class="state-ladder-label">The Deeper Fit</div>
+        <div class="state-ladder-headline">Giving a name to the feeling<br><span class="gradient-text">Red Bull creates.</span></div>
+        <div class="ladder-bars">
+          <div class="ladder-bar vibe-rise">
+            <span class="bar-name">Vibe Rise</span>
+            <span class="bar-state">expressed + alive</span>
+          </div>
+          <div class="ladder-bar ventral">
+            <span class="bar-name">Ventral Vagal</span>
+            <span class="bar-state">safe + social</span>
+          </div>
+          <div class="ladder-bar sympathetic">
+            <span class="bar-name">Sympathetic</span>
+            <span class="bar-state">fight / flight</span>
+          </div>
+          <div class="ladder-bar dormant">
+            <span class="bar-name">Dorsal Vagal</span>
+            <span class="bar-state">shutdown / numb</span>
+          </div>
+        </div>
+        <p class="ladder-caption">Red Bull has always activated energy. This format channels it into <em class="gradient-text">the state above.</em></p>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- 8. THE ASK -->
+  <section class="short-section">
+    <div class="inner fade-up">
+      <span class="label">The Ask</span>
+      <h2>What each side<br><span class="gradient-text">brings to the table.</span></h2>
+
+      <div class="ask-grid">
+        <div class="ask-card">
+          <h3 class="gradient-text">What We Bring</h3>
+          <ul>
+            <li>200+ event experience, headset fleet, proven format</li>
+            <li>6 European cities confirmed for Summer 2026</li>
+            <li>Videographer + editing agency already hired</li>
+            <li>The format, the expertise, and the team on the ground</li>
+          </ul>
+        </div>
+        <div class="ask-card">
+          <h3 class="gradient-text">What Red Bull Brings</h3>
+          <ul>
+            <li>Red Bull Energy Drink at every activation</li>
+            <li>Promotional channels and local event teams</li>
+            <li>Red Bull Media House content production</li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="margin-top: 40px; text-align: center; font-weight: 700; color: var(--text); font-size: clamp(1.1rem, 2vw, 1.3rem);">A fraction of a single F1 race weekend, for a 6-city cultural activation with global content output.</p>
+    </div>
+  </section>
+
+  <!-- 9. WHAT'S NEXT + CONTACT (merged) -->
+  <section>
+    <div class="inner fade-up" style="text-align: center;">
+      <span class="label">What's Next</span>
+      <h2>A yearly cultural phenomenon<br><span class="gradient-text">across Europe.</span></h2>
+      <p style="margin-top: 16px; max-width: 650px; margin-left: auto; margin-right: auto;">Each year gets bigger. More cities, more people, more impact. A cultural fixture that compounds every summer.</p>
+
+      <div class="expansion-grid" style="text-align: left; grid-template-columns: 1fr 1fr; margin-top: 32px;">
+        <div class="expansion-card">
+          <div class="season-label">Every Summer</div>
+          <h3>New cities. New monuments. Same format.</h3>
+          <p>6-10 European cities per year. Each summer builds on the last. The tour becomes the thing people plan their summers around.</p>
+        </div>
+        <div class="expansion-card">
+          <div class="season-label">Then the world opens up</div>
+          <h3>Asia-Pacific. Americas. Global.</h3>
+          <p>Angkor Wat. Sydney Opera House. Machu Picchu. Brooklyn Bridge. Once Europe proves the format, every continent has monuments waiting.</p>
+        </div>
+      </div>
+
+      <p style="margin-top: 48px; font-weight: 600; color: var(--text); font-size: clamp(1.1rem, 2vw, 1.3rem);">Every city has a monument. Every monument is a potential dance floor.</p>
+
+      <!-- Contact -->
+      <div style="margin-top: 64px;">
+        <img src="./nic-spiff-contact.jpg" alt="Nic and Spiff" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); margin-bottom: 24px;">
+        <h2>Red Bull has owned the sky, the slopes,<br>the track, and the stage.<br><span class="gradient-text">This is how it owns the monument.</span></h2>
+        <div class="contact-links" style="margin-top: 32px;">
+          <a href="https://wa.me/61423220241" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; font-size: 1.1rem;">WhatsApp: +61 423 220 241</a>
+          <a href="mailto:Huzz@nichuzz.com" style="font-size: 1.05rem;">Huzz@nichuzz.com</a>
+          <span class="muted">Nic Huzz / @_huzz</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('video').forEach(video => {
+      video.style.cursor = 'pointer';
+      video.addEventListener('click', () => {
+        if (!video.muted) { video.muted = true; return; }
+        document.querySelectorAll('video').forEach(v => { v.muted = true; });
+        video.muted = false;
+      });
+    });
+  </script>
+
+</body>
+</html>
